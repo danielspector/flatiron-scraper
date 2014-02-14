@@ -30,5 +30,4 @@ describe "Student Scraper" do
     scraped_name = StudentScraper.scrape_name
   end
 
-  end
 end
