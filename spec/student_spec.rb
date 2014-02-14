@@ -1,6 +1,15 @@
 require_relative 'spec_helper'
 
+
 describe "Student" do
+
+  before(:each) do
+    DB.execute("CREATE TABLE IF NOT EXISTS students (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT)")
+end
+
+after(:each) do
+  DB.execute("DROP TABLE students")
+end
 
   it "has a name" do
     student = Student.new
@@ -11,11 +20,11 @@ describe "Student" do
 
   it "needs to add itself to our database" do
     student = Student.new
-    student.name = "Alex"    
+    student.name = "Alex"
     student.save
 
-    results = DB.execute("SELECT name FROM students WHERE name = ?", name)
-    expect(results[0][0]).to eq("Alex")
+    results = DB.execute("SELECT name FROM students WHERE name = 'Alex' ")
+    expect(results[0][0]).to eq('Alex')
   end
 end
 
