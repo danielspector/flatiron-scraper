@@ -5,6 +5,8 @@ DB.execute(“CREATE TABLE students (id INTEGER PRIMARY KEY AUTOINCREMENT, name 
 
 attr_accessor :name
 
-  
-  
+  def save
+    DB.execute("INSERT INTO students (name) VALUES(?)", name)
+  end
+
 end
